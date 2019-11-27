@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 {{ partial "header.html" . }}
-<body>
-	<div class="container wrapper">
-		{{ partial "head.html" . }}
 
-		<div class="recent-posts section">
-			<h2 class="section-header">
-				Recent posts
-			</h2>
-			<div class="posts">
-				{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
-				{{ range $paginator.Pages }}
-				<div class="post">
-					<div class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
-					<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a> &mdash;
-					<span class="description">
-						{{ if isset .Params "description" }}
-						{{ .Description }}
-						{{ else if gt (len .RawContent) 120 }}
-						{{ slicestr .RawContent 0 120 }}...
-						{{ else }}
-						{{ .RawContent }}
-						{{ end }}
-					</span>
-				</div>
-				{{ end }}
-				{{ template "partials/paginator.html" . }}
-			</div>
-		</div>
-	</div>
-	{{ partial "footer.html" . }}
+<body>
+    <div id="content">
+        {{ partial "head.html" . }}
+        <div class="container wrapper">
+
+            <div class="recent-posts section">
+                {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006" }}
+                <h2 class="archive-title">{{ .Key }}</h2>
+                {{ range .Pages }}
+                <article class="archive-item">
+                    <span class="item-text">
+                        <h4><a class="title" href="{{ .RelPermalink }}">{{.Title}}</a></h4> &mdash;
+                        <span class="description">
+                            {{ if isset .Params "description" }}
+                            {{ .Description }}
+                            {{ else if gt (len .RawContent) 120 }}
+                            {{ slicestr .RawContent 0 120 }}...
+                            {{ else }}
+                            {{ .RawContent }}
+                            {{ end }}
+                        </span>
+                    </span>
+                    <span class="item-date">
+                        {{ .Date.Format "January 2" }}
+                    </span>
+                </article>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    {{ partial "footer.html" . }}
 </body>
+
 </html>

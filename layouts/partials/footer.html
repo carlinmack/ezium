@@ -1,10 +1,8 @@
-<div class="footer wrapper">
-	<nav class="nav">
-		<div>{{ with .Site.Copyright }} {{ . }} | {{ end }} <a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
-	</nav>
-</div>
-
-{{ template "_internal/google_analytics_async.html" . }}
-{{- with .Site.Params.Social -}}
-<script>feather.replace()</script>
-{{- end -}}
+<footer class="footer">
+    <p>{{ with .OutputFormats.Get "RSS" }}
+        <a href="{{ .RelPermalink }}" type="application/rss+xml" target="_blank">RSS feed</a> |
+        {{ end }}
+        Built with <a href="https://gohugo.io">Hugo</a> | Theme is Ezium
+    </p><br />
+    <p>© Carlin MacKenzie 2018-2019</p>
+</footer>
