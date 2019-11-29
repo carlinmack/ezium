@@ -13,7 +13,7 @@
 
 body {
     background-color: hsl(var(--hue), var(--sat), var(--light));
-    font-family: "iA writer quattro s", sans-serif;
+    font-family: "iA Writer Q", sans-serif;
     font-weight: 400;
     line-height: 1.6;
     font-size: 16px;
@@ -72,7 +72,7 @@ textarea {
 blockquote {
     margin-left: 1rem;
     font-style: italic;
-    font-size: 1.4rem;
+    font-family: Georgia, bitstream charter, serif;
     font-family: Georgia, bitstream charter, serif;
     border-left: 3px solid;
     border-color: #a00;
@@ -100,7 +100,7 @@ a {
 .markdown a,
 .markdown h2,
 .markdown h3 {
-    font-family: 'ia writer quattro s';
+    font-family: 'iA Writer Q';
     color: #333;
 }
 
@@ -327,6 +327,10 @@ ul {
     margin-left: 5px;
 }
 
+.description {
+    font-style: italic;
+}
+
 footer {
     padding: 25px 0;
     text-align: center;
@@ -467,7 +471,7 @@ nav a {
 
     #content {
         margin: 0 0;
-        grid-template-rows: 150px max-content;
+        grid-template-rows: 150px minmax(80vh, max-content);
         grid-template-columns: 1fr;
         grid-template-areas: "header""main";
     }
@@ -516,8 +520,36 @@ nav a {
     }
 }
 
-/* @font-face {
+@font-face {
     font-family: "Bebas Neue";
-    src: url("Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix");
-    src: url("Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix") format("eot"), url("Fonts/1444649/e0d6f852-5401-4bbf-9672-47a50c5c87c6.woff2") format("woff2"), url("Fonts/1444649/7fedd582-6ae3-4850-be2f-4acae2e74fa5.woff") format("woff"), url("Fonts/1444649/d6e08ef3-40db-4ac3-82df-f062f55a72f5.ttf") format("truetype");
-} */
+    src: url("/Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix");
+    src: url("/Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix") format("eot"), url("/Fonts/1444649/e0d6f852-5401-4bbf-9672-47a50c5c87c6.woff2") format("woff2"), url("Fonts/1444649/7fedd582-6ae3-4850-be2f-4acae2e74fa5.woff") format("woff"), url("/Fonts/1444649/d6e08ef3-40db-4ac3-82df-f062f55a72f5.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "iA Writer Q";
+    src: url('/Fonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2'),
+        url('/Fonts/iAWriterQuattroS-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: "iA Writer Q";
+    src: url('/Fonts/iAWriterQuattroS-Italic.woff2') format('woff2'),
+        url('/Fonts/iAWriterQuattroS-Italic.woff') format('woff');
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: "iA Writer Q";
+    src: url('/Fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
+        url('/Fonts/iAWriterQuattroS-Bold.woff') format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "iA Writer Q";
+    src: url('/Fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
+        url('/Fonts/iAWriterQuattroS-Regular.woff') format('woff');
+}
