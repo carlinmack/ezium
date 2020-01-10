@@ -1,11 +1,11 @@
 # theme.toml template for a Hugo theme
 # See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
-name = "Ezhil"
+name = "Ezium"
 license = "MIT"
-licenselink = "https://github.com/vividvilla/ezhil/blob/master/LICENSE.md"
+licenselink = "https://github.com/carlinmack/ezium/blob/master/LICENSE.md"
 description = "Clean and minimal personal blog and portfolio theme."
-homepage = "https://github.com/vividvilla/ezhil"
+homepage = "https://github.com/carlinmack/ezium"
 tags = ["minimal", "clean", "blog", "responsive", "personal", "simple", "minimalist", "portfolio", "dark"]
 features = ["blog", "Clean and minimal", "Responsive", "Social media links", "Syntax highlighting"]
 min_version = "0.37.0"
