@@ -11,6 +11,7 @@
     --color-link: #222;
     --color-nav-hover: #555;
     --color-nav: #666;
+    --light-code: 85%;
 
     --duration: 0.5s;
     --timing: ease;
@@ -104,13 +105,25 @@ textarea {
     resize: vertical;
 }
 
-table {
-    width: 50%;
-    margin: 2em auto;
+code {
+    padding: 0.1em 0.2em;
 }
 
-td {
-    width: 50%;
+pre {
+    padding: 1em;
+}
+
+code,
+pre {
+    background-color: hsl(var(--hue), var(--sat), var(--light-code));
+    border-radius: 0.4em;
+    transition: background-color var(--duration) var(--timing);
+}
+
+table {
+    width: 70%;
+    margin: 2em auto;
+    table-layout: fixed;
 }
 
 blockquote {
@@ -148,6 +161,8 @@ a {
 .markdown h3 {
     font-family: 'iA Writer Q';
     color: var(--color-heading);
+
+    transition: color var(--duration) var(--timing);
 }
 
 .markdown p a {
@@ -584,7 +599,7 @@ nav a:hover {
     }
 
     .container {
-        margin-top: 10px;
+        max-width: 90vw;
     }
 
     #content {
