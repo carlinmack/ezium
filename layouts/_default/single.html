@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-{{ partial "header.html" . }}
+{{ partial "head.html" . }}
 
 <body>
     <div id="content">
@@ -13,9 +13,11 @@
             </div>
         </header>
 
-        <nav>
-            <a id='back' href="{{ $.Site.BaseURL }}">Back</a>
+        <nav id='back'>
+            <a href="{{ $.Site.BaseURL }}">Back</a>
         </nav>
+
+        {{ if .Params.showToC }} {{ .TableOfContents }} {{ end }}
 
         <div class="container wrapper post">
 

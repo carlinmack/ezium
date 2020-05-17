@@ -1,11 +1,21 @@
-<footer class="footer">
-    <p>{{ with .OutputFormats.Get "RSS" }}
-        <a href="{{ .RelPermalink }}" type="application/rss+xml" target="_blank">RSS feed</a> |
-        {{ end }}
-        Built with <a href="https://gohugo.io">Hugo</a> | Theme is <a
-            href="https://github.com/carlinmack/ezium">Ezium</a>
-    </p><br />
-    <p>© Carlin MacKenzie 2018-{{ dateFormat "2006" now }}</p>
-    <script src="/nightmode.js?v=1"></script>
-    <!-- <script src="/font.js"></script> -->
-</footer>
+<noscript>
+    <footer class="footer">
+        <div id='footerText'>
+            <p>{{ with .OutputFormats.Get "RSS" }}
+                <a href="{{ .RelPermalink }}" type="application/rss+xml" target="_blank">RSS feed</a> |
+                {{ end }}
+                Built with <a href="https://gohugo.io">Hugo</a> | Theme is <a
+                    href="https://github.com/carlinmack/ezium">Ezium</a>
+            </p><br />
+            <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"
+                    rel="noreferrer noopener">
+                    <img width="16px" height="16px" src="/SVG/cc.svg?v=1.04" alt="Creative Commons Licence">
+                    <img width="16px" height="16px" src="/SVG/by.svg?v=1.04" alt="Creative Commons By"> </a>
+                Carlin MacKenzie 2018-{{ dateFormat "2006" now }}</p>
+        </div>
+    </footer>
+</noscript>
+<my-footer type='blog'> </my-footer>
+<script src="/JS/footer.js?v=1.10"></script>
+<script src="/JS/nightmode.js?v=1.61"></script>
+<!-- <script src="/JS/font.js?v=1.06"></script> -->

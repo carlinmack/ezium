@@ -9,31 +9,52 @@
     --color-title: #222;
     --color-heading: #333;
     --color-link: #222;
-    --color-nav-hover: #555;
+    --color-link-hover: #888;
     --color-nav: #666;
+    --color-nav-hover: #AAA;
     --light-code: 85%;
+    --light-selection: 35.7%;
+    --light-toc-border: 61.6%;
 
     --duration: 0.5s;
     --timing: ease;
+
+    --body-font-family: 'iA Writer Q';
+    --heading-font-family: 'iA Writer Q';
+    --input-font-family: 'iA Writer Q';
+    --nav-link-font-family: 'iA Writer Q';
+
+    --link-font-family: 'EB Garamond';
+    --title-font-family: 'EB Garamond';
+
+    --font-size-title: 21px;
+    --font-size-description: 1rem;
+    --font-size-site-title: 4.375rem;
+    --font-size-body: 1.1em;
+    --font-size-post-title: 3.5rem;
+    --font-size-post-title-mobile: 2.75em;
+    --font-size-subtitle: 1.375em;
 }
 
 *::selection {
     color: #eeeeee;
-    background-color: #5b5b5b;
+    background-color: hsl(0, 0%, var(--light-selection));
+    transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing);
 }
 
 body {
     background-color: hsl(var(--hue), var(--sat), var(--light));
     color: var(--color-body);
-    font-family: "iA Writer Q", sans-serif;
+    font-family: var(--body-font-family), "iA Writer Q", sans-serif;
     font-weight: 400;
     line-height: 1.6;
-    font-size: 1.1em;
-    max-width: 800px;
+    font-size: var(--font-size-body);
     min-width: 350px;
     min-height: 98vh;
     display: grid;
-    grid-template-rows: minmax(200px, max-content) 80px;
+    grid-template-rows: minmax(200px, max-content) 100px;
     grid-template-columns: 1fr;
     grid-template-areas: "content""footer";
     overflow-x: hidden;
@@ -65,6 +86,7 @@ hr {
     max-width: 100%;
     display: block;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, .2), 0 4px 10px 0 rgba(0, 0, 0, .1);
+    max-height: 70vh;
 }
 
 img.left,
@@ -148,7 +170,7 @@ blockquote em {
 a {
     display: inline-block;
     text-decoration: none;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--link-font-family), 'EB Garamond', serif;
     font-weight: bold;
     color: var(--color-link);
     padding: 5px 0;
@@ -156,10 +178,16 @@ a {
     transition: color var(--duration) var(--timing);
 }
 
+a:hover,
+.markdown a:hover {
+    color: var(--color-link-hover);
+    transition: color 0.05s ease;
+}
+
 .markdown a,
 .markdown h2,
 .markdown h3 {
-    font-family: 'iA Writer Q';
+    font-family: var(--heading-font-family), 'iA Writer Q';
     color: var(--color-heading);
 
     transition: color var(--duration) var(--timing);
@@ -171,11 +199,7 @@ a {
 
 .title {
     color: var(--color-title);
-    font-size: 21px;
-}
-
-a:hover {
-    border-bottom-color: #222;
+    font-size: var(--font-size-title);
 }
 
 header {
@@ -237,10 +261,38 @@ h6 {
     text-align: right;
 }
 
+.wrapper {
+    margin: 0 5%;
+    width: 90%;
+}
+
 .container {
     max-width: 800px;
     padding: 0;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+    margin-top: 20px;
+}
+
+/* if there's a table of contents don't use the area */
+#TableOfContents+.container {
     grid-area: main;
+}
+
+#TableOfContents {
+    grid-area: toc;
+    background: hsl(var(--hue), var(--sat), var(--light-code));
+    border: 5px hsl(var(--hue), var(--sat), var(--light-toc-border)) solid;
+    padding: 0 5px;
+    margin: 20px 5% -25px;
+}
+
+#TableOfContents>ul {
+    margin: 10px 0 8px;
+}
+
+#TableOfContents a {
+    padding: 2.5px 0;
 }
 
 ul {
@@ -267,7 +319,7 @@ ul.flat li {
 }
 
 .subtitle {
-    font-size: 1.375em;
+    font-size: var(--font-size-subtitle);
     font-variant: small-caps;
     line-height: 1em;
     margin: 0.5em 0 1em;
@@ -278,24 +330,24 @@ ul.flat li {
 }
 
 ul {
-    list-style: disc inside;
+    list-style: none inside;
 }
 
 .site-title a,
 .post-header .title {
     color: var(--color-title);
     text-decoration: none !important;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--title-font-family), 'EB Garamond', serif;
     margin: 0;
 }
 
 .site-title a {
-    font-size: 4.375rem;
+    font-size: var(--font-size-site-title);
     color: var(--color-title);
 }
 
 .post-header .title {
-    font-size: 3.5rem;
+    font-size: var(--font-size-post-title);
     line-height: 1.2em;
     padding-top: 76px;
 }
@@ -318,14 +370,6 @@ ul {
 .highlight {
     background: 0 0;
     background-color: #FAFAFA;
-}
-
-.wrapper {
-    margin: 0 5%;
-}
-
-.container {
-    margin-top: 50px;
 }
 
 .section .section-header {
@@ -351,10 +395,6 @@ ul {
 
 .recent-posts article {
     padding: 5px 0 20px;
-}
-
-.post-header {
-    margin-bottom: -30px;
 }
 
 .post .post-header {
@@ -407,7 +447,7 @@ ul {
 
 .description {
     font-style: italic;
-    font-size: 1rem;
+    font-size: var(--font-size-description);
 }
 
 footer {
@@ -416,21 +456,19 @@ footer {
     font-family: Roboto Mono, monospace;
     color: white;
     font-size: 12px;
+    margin-top: 4em;
 
     grid-area: footer;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
+    display: grid;
+    grid-template: "font text nightmode"1fr / 1fr 4fr 1fr;
+    place-items: center;
     text-align: center;
     line-height: 1.2rem;
-    place-content: center;
-    place-items: center;
     width: 100vw;
     height: 80px;
     background: var(--background-footer);
     position: relative;
 
-    margin-top: 50px;
     padding: 10px 0;
 }
 
@@ -441,6 +479,38 @@ footer a {
 
 footer p {
     margin: 0 auto;
+}
+
+my-footer {
+    grid-area: footer;
+}
+
+div[slot] {
+    height: 35px;
+}
+
+div[slot="font"] {
+    grid-area: font;
+}
+
+div[slot="nightmode"] {
+    grid-area: nightmode;
+}
+
+#footerText {
+    grid-area: text;
+}
+
+#footerText p {
+    display: contents;
+    font-family: Roboto Mono, Consolas, monospace;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.2rem;
+}
+
+#footerText img {
+    margin-bottom: -3.5px;
 }
 
 .page-title {
@@ -503,7 +573,7 @@ footer p {
 
 input,
 [type="submit"] {
-    font-family: 'iA Writer Q', sans-serif;
+    font-family: var(--input-font-family), 'iA Writer Q', sans-serif;
 }
 
 input {
@@ -548,16 +618,16 @@ input {
 #content {
     max-width: 800px;
     min-width: 350px;
-    margin: 0 auto;
+    margin: 0 auto 13px;
     display: grid;
     grid-template-columns: 4fr 1fr;
-    grid-template-rows: minmax(15vh, max-content) minmax(85vh, max-content);
-    grid-template-areas: "header back""main main";
+    grid-template-rows: minmax(15vh, max-content) max-content minmax(85vh, max-content);
+    grid-template-areas: "header back""toc toc""main main";
     grid-area: content;
     width: 100%;
 }
 
-#content>nav {
+#back {
     grid-area: back;
     justify-self: end;
     padding-right: 25%;
@@ -566,9 +636,12 @@ input {
     padding-bottom: 5px;
 }
 
-nav a {
+#back a {
     font-size: 2.3rem;
-    font-family: "iA Writer Q", sans-serif;
+}
+
+nav a {
+    font-family: var(--nav-link-font-family), "iA Writer Q", sans-serif;
     font-weight: bold;
     color: var(--color-nav);
 }
@@ -578,6 +651,10 @@ nav a:hover {
 }
 
 @media (max-width: 767px) {
+    body {
+        font-size: 1rem;
+    }
+
     h1 {
         font-size: 1.8rem;
     }
@@ -595,7 +672,7 @@ nav a:hover {
     }
 
     header {
-        margin-left: 7.5%;
+        margin: 0 5%;
     }
 
     .container {
@@ -604,9 +681,9 @@ nav a:hover {
 
     #content {
         margin: 0 0;
-        grid-template-rows: minmax(150px, max-content) minmax(80vh, max-content);
+        grid-template-rows: minmax(150px, max-content) maxcontent minmax(80vh, max-content);
         grid-template-columns: 1fr;
-        grid-template-areas: "header""main";
+        grid-template-areas: "header""toc""main";
     }
 
     header {
@@ -614,7 +691,7 @@ nav a:hover {
     }
 
     .post-header .title {
-        font-size: 3em;
+        font-size: var(--font-size-post-title-mobile);
     }
 
     .archive-item {
@@ -632,33 +709,33 @@ nav a:hover {
         padding: 15px;
     }
 
-    #content>nav {
+    #back {
         padding: 0;
         position: fixed;
         left: 0;
         bottom: 0;
         background: #3f3932bb;
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
+        width: 100vw;
+        display: grid;
+        grid-template-areas: "font home nightmode";
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 1fr;
         font-size: 3.5vw;
-
+        place-items: center;
     }
 
-    nav a {
+    #back a {
+        grid-area: home;
+    }
+
+    #back a {
         color: #eee;
         line-height: normal;
     }
 
-    nav a:hover {
+    #back a:hover {
         color: #bbb;
     }
-}
-
-@font-face {
-    font-family: "Bebas Neue";
-    src: url("/Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix");
-    src: url("/Fonts/1444649/3d9ec9a9-76a2-4cfe-b376-76e7340c3b50.eot?#iefix") format("eot"), url("/Fonts/1444649/e0d6f852-5401-4bbf-9672-47a50c5c87c6.woff2") format("woff2"), url("Fonts/1444649/7fedd582-6ae3-4850-be2f-4acae2e74fa5.woff") format("woff"), url("/Fonts/1444649/d6e08ef3-40db-4ac3-82df-f062f55a72f5.ttf") format("truetype");
 }
 
 @font-face {
@@ -687,4 +764,39 @@ nav a:hover {
     font-family: "iA Writer Q";
     src: url('/Fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
         url('/Fonts/iAWriterQuattroS-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond Bold Italic'), local('EBGaramond-BoldItalic'),
+        url('/Fonts/EBGaramond-BoldItalic.woff2') format('woff2'),
+        url('/Fonts/EBGaramond-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond Italic'), local('EBGaramond-Italic'),
+        url('/Fonts/EBGaramond-Italic.woff2') format('woff2'),
+        url('/Fonts/EBGaramond-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond SmallCaps 12 Regular'), local('EBGaramondSC12-Regular'),
+        url('/Fonts/EBGaramondSC12-Regular.woff2') format('woff2'),
+        url('/Fonts/EBGaramondSC12-Regular.woff') format('woff');
+    font-variant: small-caps;
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond Regular'), local('EBGaramond-Regular'),
+        url('/Fonts/EBGaramond-Regular.woff2') format('woff2'),
+        url('/Fonts/EBGaramond-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
